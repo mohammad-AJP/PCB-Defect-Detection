@@ -1,0 +1,50 @@
+# ── HRIPCB dataset configuration ─────────────────────────────────────────────
+# Parallel config for the HRIPCB second-dataset experiments.
+# All outputs go under outputs_hripcb/ — nothing overlaps with the
+# first-dataset results in outputs/.
+#
+# Run any script with:  --config configs/hripcb.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+
+dataset:
+  source_dir: HRIPCB              # raw HRIPCB folder (already YOLO-split)
+  processed_dir: data/hripcb     # symlinked + metadata written by prepare_hripcb.py
+  format: yolo                   # already in YOLO format, no conversion needed
+  seed: 42
+
+# HRIPCB class names (same 6-class taxonomy, slightly different naming)
+class_names:
+  - missing_hole        # class 0  (≈ missing_pad in Dataset 1)
+  - mouse_bite          # class 1
+  - open_circuit        # class 2
+  - short               # class 3
+  - spurious_copper     # class 4  (note: order differs from Dataset 1)
+  - spur                # class 5
+
+model:
+  name: yolo12n.pt
+  imgsz: 640
+  epochs: 50
+  batch: 16
+  device: 0
+
+tile_training:
+  tile_size: 640
+  overlap: 128
+  min_visibility: 0.4
+  tiles_dir: data/hripcb_tiles
+
+tiling:
+  tile_size: 640
+  overlap: 0
+  boundary_tau: 16
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+
+topology:
+  lambda_adj: 0.2
+  mu_edge: 0.0
+  use_edge_continuity: false
+
+outputs:
+  dir: outputs_hripcb

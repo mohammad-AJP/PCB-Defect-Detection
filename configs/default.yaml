@@ -1,0 +1,41 @@
+dataset:
+  raw_dir: PCB_Defect          # folder containing images/ and annotation/
+  processed_dir: data/processed
+  format: coco                 # coco or yolo
+  coco_json: annotation/_annotations.coco.json
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  seed: 42
+
+model:
+  name: yolo11n.pt   # default: YOLO11 nano (latest stable)
+                     # other options: yolov8n.pt, yolov8s.pt,
+                     #   yolov9t.pt, yolov9s.pt,
+                     #   yolo11s.pt, yolo11m.pt,
+                     #   yolo12n.pt, yolo12s.pt
+  imgsz: 640
+  epochs: 50
+  batch: 8
+  device: 0
+
+tile_training:
+  tile_size: 640
+  overlap: 128            # overlap used when cutting training tiles
+  min_visibility: 0.4    # min fraction of GT box area that must be in the tile
+  tiles_dir: data/tiles  # where the tile dataset is written
+
+tiling:
+  tile_size: 640
+  overlap: 0
+  boundary_tau: 16
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+
+topology:
+  lambda_adj: 0.2
+  mu_edge: 0.0
+  use_edge_continuity: false
+
+outputs:
+  dir: outputs
