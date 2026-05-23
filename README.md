@@ -1,6 +1,6 @@
 # From Full Boards to Tiny Defects
 ### Resolution Collapse and Topology-Aware Tiling for High-Resolution PCB Defect Detection
-*ICMV 2026 paper codebase*
+
 
 ---
 
