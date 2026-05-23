@@ -89,7 +89,7 @@ All commands below assume the `pcb_tiling` environment is active.
 
 ## Step-by-Step Guide
 
-### Step 0 — Repository Skeleton *(already done)*
+### Step 0 — Repository Skeleton 
 
 All folders, `configs/default.yaml`, `requirements.txt`, and script stubs are
 created.  Edit `configs/default.yaml` to change any hyperparameter — do not
